@@ -10,7 +10,7 @@ To create a platform to aid the students in the on-campus placement process by p
 2. django
 3. HTML, CSS
 
-# Member
+# Members
 1. Rubal Bansal (101412031)
 2. Setu Loomba (101412036)
 3. Sarthak Chaudhary (101412034)
