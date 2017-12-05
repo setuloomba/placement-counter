@@ -1,0 +1,70 @@
+{% extends 'tpcprocess/comp_base.html' %}
+
+{% block body %}
+
+{% if filled == 1 %}
+    <div class="container">
+    <br><br><br>
+    <h2>Company Eligibility Criteria has been set</h2>
+    <br>
+    <h4>Description : {{comp.description}}</h4>
+    <h4>Tech Skills : {{comp.tech_skills}}</h4>
+    <h4>Min CGPA : {{comp.min_cgpa}}</h4>
+    <h4>Live KT allowed : {{comp.live_kt_allowed}}</h4>
+    <h4>Backlog allowed : {{comp.backlog_allowed}}</h4>
+    </div>
+
+{% else %}
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset" style="margin-top:50px;">
+        <form method="post" action="{% url 'tpcprocess:submit_eligi' %}" enctype="multipart/form-data">
+            {%csrf_token%}
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<textarea class="mdl-textfield__input" type="text" rows= "5" name="description" id="desc"></textarea>
+				<label class="mdl-textfield__label mdl-color-text--black" for="desc">Description</label>
+            </div>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="cgpa" id="cgpa">
+                <label class="mdl-textfield__label mdl-color-text--black" for="cgpa">Minimum CGPA Required</label>
+            </div>
+            <br>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<textarea class="mdl-textfield__input" type="text" rows= "5" name="techskill" id="tech"></textarea>
+				<label class="mdl-textfield__label mdl-color-text--black" for="tech">Technical Skills required</label>
+            </div>
+
+            <br />
+            <br />
+            <p style="font-size:20px">Live KT Permitted :</p>
+            <label for="ktoption-1" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
+                <input type="radio" class="mdl-radio__button" id="ktoption-1" name="ktoptions" value="True" checked />
+                <span class="mdl-radio__label">Yes</span>
+            </label>
+            <label for="ktoption-2" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
+                <input type="radio" class="mdl-radio__button" id="ktoption-2" name="ktoptions" value="False" />
+                <span class="mdl-radio__label">No</span>
+            </label>
+
+            <br />
+            <br />
+            <p style="font-size:20px">Backlogs Permitted :</p>
+            <label for="bloption-1" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
+                <input type="radio" class="mdl-radio__button" id="bloption-1" name="bloptions" value="True" checked />
+                <span class="mdl-radio__label">Yes</span>
+            </label>
+            <label for="bloption-2" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
+                <input type="radio" class="mdl-radio__button" id="bloption-2" name="bloptions" value="False" />
+                <span class="mdl-radio__label">No</span>
+            </label>
+            <br />
+            <br />
+            <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color--purple-A700"
+                   value="Submit" style="left:20%" >
+            <br />
+
+        </form>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}

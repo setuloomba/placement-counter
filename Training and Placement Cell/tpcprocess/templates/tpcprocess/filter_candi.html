@@ -1,0 +1,31 @@
+{% extends 'tpcprocess/comp_base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <h2>Filtered Candidates are : </h2>
+    <br>
+    <br>
+    <form method="post" action="{% url 'tpcprocess:filter_candi' %}" enctype="multipart/form-data">
+        {%csrf_token%}
+        {% for candi in candidates %}
+            <label for="{{candi.id}}" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
+                <input type="checkbox" id="{{candi.id}}" name="filterlist" class="mdl-checkbox__input" value="{{candi.id}}" />
+                <span class="mdl-checkbox__label">{{candi.student.name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="mdl-checkbox__label">GPA : {{candi.student.cgpa}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="mdl-checkbox__label">Branch : {{candi.student.branch}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="mdl-checkbox__label">Live KTs : {{candi.student.live_kt}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="mdl-checkbox__label">Dead KTs : {{candi.student.dead_kt}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="mdl-checkbox__label">Profile : {{candi.student.profile}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="mdl-checkbox__label">Pass Year : {{candi.student.passing_year}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+        {% endfor %}
+        <br /><br /><br /><br />
+        <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color--purple-A700"
+               value="Send Application" style="left:45%" >
+        <br />
+
+    </form>
+</div>
+
+{% endblock %}

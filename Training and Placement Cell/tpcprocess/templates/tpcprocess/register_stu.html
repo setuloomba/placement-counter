@@ -1,0 +1,81 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		<title>TPC</title>
+
+        {% load staticfiles %}
+		<!-- Page styles -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.min.css">
+		<link rel="stylesheet" href="styles.css">
+
+		<script src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+		<style>
+			body {
+				color: white;
+			}
+			.login-box {
+				<!--background-color:#fafafa;-->
+				color:black;
+				border-radius:5px;
+				padding-bottom:20px;
+			}
+		</style>
+
+	</head>
+	<body class="mdl-color--purple-A700">
+
+
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset" >
+				<center>
+				<h2>Registration</h2>
+				</center>
+			</div>
+		</div>
+
+		<div class="mdl-grid mdl-cell mdl-cell--4-col mdl-cell--4-offset login-box mdl-shadow--6dp mdl-color--grey-100 mdl-color-text--black">
+
+			<form action="" method="post" enctype="multipart/form-data" role="form">
+				{% csrf_token %}
+                {% for field in form1 %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span class="text-danger small">{{ field.errors }}</span>
+                        </div>
+                        <label class="control-label col-sm-2" for="song_title">{{ field.label_tag }}</label>
+                        <div class="col-sm-10">{{ field }}</div>
+                    </div>
+
+                {% endfor %}
+                {% for field in form2 %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span class="text-danger small">{{ field.errors }}</span>
+                        </div>
+                        <label class="control-label col-sm-2" for="song_title">{{ field.label_tag }}</label>
+                        <div class="col-sm-10">{{ field }}</div>
+                    </div>
+                {% endfor %}
+				<br>
+				<br>
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color--purple-A700"
+                       type="submit" value="REGISTER" style="left:30%">
+                    REGISTER
+                </button>
+
+				<br />
+			</form>
+
+		</div>
+
+	</body>
+</html>

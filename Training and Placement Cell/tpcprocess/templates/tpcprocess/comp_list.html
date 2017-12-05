@@ -1,0 +1,46 @@
+{% extends 'tpcprocess/stu_base.html' %}
+
+{% block body %}
+
+    <div class="container">
+        <h3>Recruiting Companies</h3>
+        <p>Click for further details</p>
+
+        <style>
+            .demo-accordion-4 {
+                height: {{box_size}}px;
+                border: 1px solid white;
+            }
+            .demo-accordion-4 .mdlext-accordion__tabpanel {
+                background-color: rgba(165, 214, 167, 0.4);
+            }
+
+        </style>
+
+        <ul class="mdlext-accordion mdlext-js-accordion mdlext-accordion--vertical demo-accordion-4" role="tablist" aria-multiselectable="false">
+            {% for comp in companies %}
+                <li class="mdlext-accordion__panel" role="presentation">
+                    <header class="mdlext-accordion__tab" aria-expanded="false" role="tab">
+                        <i class="material-icons">business</i>
+                        <span class="mdlext-accordion__tab__caption">{{comp.company.name}}</span>
+                        <i class="mdlext-aria-toggle-material-icons"></i>
+                    </header>
+                    <section class="mdlext-accordion__tabpanel" role="tabpanel">
+                        <h5>{{comp.company.location}}</h5>
+                        <p>{{comp.description}}</p>
+                        <p>Technical Skills Expected : {{comp.tech_skills}}</p>
+                        <p>Minimum CGPA Expected : {{comp.min_cgpa}}</p>
+                        <p>Live KT Allowed : {% if comp.live_kt_allowed %} Yes {% else %} No {% endif%}</p>
+                        <p>Backlogs Allowed : {% if comp.bl_allowed %} Yes {% else %} No {% endif%}</p>
+
+                        <a href="{% url 'tpcprocess:apply' comp.id %}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            style="float:right;margin-right:20px">
+                            APPLY
+                        </a>
+                    </section>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
